@@ -44,3 +44,15 @@ auth 유저 사용.
 
 
 ````
+jblog db 사용자 생성
+
+create database jblog
+
+create user 'jblog'@'localhost' identified by 'jblog';
+create user 'jblog'@'127.0.0.1' identified by 'jblog';
+create user 'jblog'@'192.168.%' identified by 'jblog';
+
+grant all privileges on jblog.* to 'jblog'@'localhost';
+grant all privileges on jblog.* to 'jblog'@'127.0.0.1';
+grant all privileges on jblog.* to 'jblog'@'192.168.%';
+
