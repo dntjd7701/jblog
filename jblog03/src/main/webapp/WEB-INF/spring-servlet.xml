@@ -12,9 +12,8 @@
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<mvc:annotation-driven />
-	
 	<context:annotation-config />
-	<context:component-scan base-package="com.douzone.jblog.controller"></context:component-scan>
+	<context:component-scan base-package="com.douzone.jblog.controller" />
 	
 	<!--ViewResolver 설정 --> 
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -23,48 +22,48 @@
 		<property name="suffix" value=".jsp"/>
 	</bean>
 	
+	<!-- 서블릿 컨테이너의 디폴트 서블릿 위임 핸들러 -->
+	<mvc:default-servlet-handler/>
+	
+	
+	<!-- Interceptors  login 처리 할거야 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/user/auth"/>
+			<bean class="com.douzone.jblog.security.LoginInterceptor"/>
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/user/logout"/>
+			<bean class="com.douzone.jblog.security.LogoutInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	
 	
 
 	<!-- Controller 쪽에도 지정을 해야 할 상황이 생길 수 있어서, 미리 설정함  -->
 	<!-- Auto Proxy -->
-<!-- 	<aop:aspectj-autoproxy/> -->
+	<!-- <aop:aspectj-autoproxy/> --> 
 
-	
 
-	<!-- Interceptors  -->
-	<!-- <mvc:interceptors>
-		<mvc:interceptor>
-			<mvc:mapping path="/user/auth"/>
-			<bean class="com.douzone.mysite.security.LoginInterceptor"/>
-		</mvc:interceptor>
-	</mvc:interceptors>
-	
-	
-	<mvc:interceptors>
-		<mvc:interceptor>
-			<mvc:mapping path="/user/logout"/>
-			<bean class="com.douzone.mysite.security.LogoutInterceptor"/>
-		</mvc:interceptor>
-	</mvc:interceptors>
-	 -->
 	
 	<!-- 위에 둘 제외 + assets 애들 하고 나머지 다~ 검사   -->
-	
-	<!-- <mvc:interceptors>
+	<!-- 
+ 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>
 			<mvc:exclude-mapping path="/user/auth"/>
 			<mvc:exclude-mapping path="/user/logout"/>
 			<mvc:exclude-mapping path="/assets/**"/>
-			<bean class="com.douzone.mysite.security.AuthInterceptor"/>
+			<bean class="com.douzone.jblog.security.AuthInterceptor"/>
 		</mvc:interceptor>
-	</mvc:interceptors> -->
+	</mvc:interceptors>  -->
 	
 	
 		 
-
 	<!-- Validator, conversionService, messageConverter를 자동으로 등록 -->
-	<!-- <mvc:annotation-driven>
+	 <!-- <mvc:annotation-driven>
 		Message Converter
 		<mvc:message-converters>
 			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
@@ -90,10 +89,7 @@
 		
 		
 	</mvc:annotation-driven> -->
-
-	<!-- 서블릿 컨테이너의 디폴트 서블릿 위임 핸들러 -->
-	<!-- <mvc:default-servlet-handler/> -->
-	
+		
 	<!-- Multipart Resolver  -->
 	<!-- 멀티파트 리졸버 -->
 	<!-- <bean id="multipartResolver" 

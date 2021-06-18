@@ -11,6 +11,4 @@ public class MainController {
 		return "main/index";
 	}
 	
-	
-
 }

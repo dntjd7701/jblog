@@ -23,12 +23,27 @@
 
 
 	<dependencies>
+	
+		<!-- Spring Aspect -->
+		 <dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+			<version>${org.springframwork-version}</version>
+		</dependency>
+		
 		<!-- Spring Context -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 			<version>${org.springframwork-version}</version>
-
+			
+			<!-- JCL 제외 -->
+			<!-- <exclusions>
+				 <exclusion>
+					 <groupId>commons-logging</groupId>
+					  <artifactId>commons-logging</artifactId>
+				 </exclusion>
+			</exclusions> -->
 		</dependency>
 
 		<!-- Spring-Web-MVC -->
@@ -44,6 +59,36 @@
 			<artifactId>spring-web</artifactId>
 			<version>${org.springframwork-version}</version>
 		</dependency>
+		
+		<!-- spring jdbc -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${org.springframwork-version}</version>
+		</dependency>
+		
+		<!-- MariaDB JDBC Driver -->
+		<!-- repository, CRUD -->
+		<dependency>
+		    <groupId>org.mariadb.jdbc</groupId>
+		    <artifactId>mariadb-java-client</artifactId>
+		    <version>2.7.2</version>
+		</dependency>
+		
+			<!-- Common DBCP -->
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency> 
+		
+		
+		<!-- jackson -->
+		 <dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.9.8</version>
+		</dependency> 
 
 		<!-- jstl -->
 		<dependency>
@@ -65,7 +110,63 @@
 			<version>2.0</version>
 			<scope>provided</scope>
 		</dependency>
-
+	
+			<!-- MyBatis -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.2.2</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>1.2.0</version>
+		</dependency>
+		
+		
+		<!-- Logback --> 
+		<!-- <dependency>                                    
+			<groupId>org.slf4j</groupId>                
+			<artifactId>jcl-over-slf4j</artifactId>     
+			<version>${jcloverslf4j.version}</version>  
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
+		</dependency> -->
+		
+		
+		<!-- 파일 업로드 -->
+		<!-- <dependency>
+		  <groupId>commons-fileupload</groupId>
+		  <artifactId>commons-fileupload</artifactId>
+		  <version>1.2.1</version>
+		</dependency>
+		
+		<dependency>
+		  <groupId>commons-io</groupId>
+		  <artifactId>commons-io</artifactId>
+		  <version>1.4</version>
+		</dependency>
+		-->
+		
+		<!-- validation -->
+		
+		<dependency>
+		   <groupId>javax.validation</groupId>
+		   <artifactId>validation-api</artifactId>
+		   <version>2.0.1.Final</version>
+		</dependency>
+		
+		  <dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-validator</artifactId>
+		    <version>6.1.0.Final</version>
+		</dependency>
+		
+	
 	</dependencies>
 
 
