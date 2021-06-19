@@ -6,7 +6,7 @@
 	<insert id="addPost" parameterType="postvo">
 		<![CDATA[
 			insert into post 
-			values(null,, "aadfas", now(), 3);
+			values(null,#{title }, #{contents }, now(), #{categoryNo })
 		]]>
 	</insert>
 	
