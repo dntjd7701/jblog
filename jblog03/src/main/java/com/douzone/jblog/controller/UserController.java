@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.douzone.jblog.service.BlogService;
 import com.douzone.jblog.service.UserService;
 import com.douzone.jblog.vo.UserVo;
 
@@ -13,6 +14,8 @@ import com.douzone.jblog.vo.UserVo;
 public class UserController {
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private BlogService blogService;
 	
 	
 	@RequestMapping("/join")
@@ -25,6 +28,8 @@ public class UserController {
 	@RequestMapping(value="/joinsuccess", method=RequestMethod.POST)
 	public String joinsuccess(UserVo vo) {
 		userService.joinUser(vo);
+		blogService.createBlog(vo.getId());
+		blogService.createCategory(vo.getId());
 		return "user/joinsuccess";
 	}
 	
