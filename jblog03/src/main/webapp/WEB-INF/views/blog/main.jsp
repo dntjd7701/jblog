@@ -28,7 +28,9 @@
 					<p>
 				</div>
 				<ul class="blog-list">
+				
 					<li><a href="">Spring Camp 2016 참여기</a> <span>2015/05/02</span>	</li>
+					
 				</ul>
 				
 				
@@ -49,7 +51,10 @@
 		<div id="navigation">
 			<h2>카테고리</h2>
 			<ul>
-				<li><a href="">닥치고 스프링</a></li>
+				<c:forEach items="${}" var="${}" >
+					<li><a href="${pageContext.request.contextPath }/${authUser.id }?categoryNo=">닥치고 스프링</a></li>
+				</c:forEach>
+				
 			</ul>
 		</div>
 		

@@ -61,5 +61,13 @@ public class BlogService {
 		blogRepository.addPost(vo);
 	}
 
+	public Map<String, Object> findAllMain(String id) {
+		List<CategoryVo> list = blogRepository.findAllCategory(id);
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		return map;
+	}
+
 
 }

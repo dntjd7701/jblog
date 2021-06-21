@@ -50,7 +50,8 @@ public class BlogController {
 		
 		BlogVo vo = blogService.findTitleAndLogo(id);
 		
-		
+		Map<String, Object> map = blogService.findAllMain(id);
+		model.addAttribute("map", map);
 		application.setAttribute("title", vo.getTitle());
 		application.setAttribute("logo", vo.getLogo());
 		return "blog/main";
