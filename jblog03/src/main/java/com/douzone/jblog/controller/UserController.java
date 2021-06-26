@@ -18,6 +18,7 @@ public class UserController {
 	private BlogService blogService;
 	
 	
+	
 	@RequestMapping("/join")
 	public String join() {
 		return "user/join";
@@ -30,6 +31,7 @@ public class UserController {
 		userService.joinUser(vo);
 		blogService.createBlog(vo.getId());
 		blogService.createCategory(vo.getId());
+//		blogService.createPost(blogService.findRecentlyCategoryNo(vo.getId()));
 		return "user/joinsuccess";
 	}
 	

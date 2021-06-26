@@ -6,6 +6,8 @@ public class PostVo {
 	private String contents;
 	private String regDate;
 	private String categoryNo;
+	
+	
 	public int getNo() {
 		return no;
 	}

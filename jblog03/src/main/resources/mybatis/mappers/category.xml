@@ -18,6 +18,13 @@
 		]]>
 	</select>
 	
+		<insert id="deleteCategory" parameterType="int">
+		<![CDATA[
+			delete from category where no=#{no }
+		]]>
+	</insert>
+	
+	
 	<insert id="createCategory" parameterType="string">
 		<![CDATA[
 			insert into category 
@@ -32,11 +39,25 @@
 		]]>
 	</insert>
 	
-	<insert id="deleteCategory" parameterType="int">
+	
+	<!-- main -->
+	
+	
+	<select id="findCategoryList" resultType="categoryvo" parameterType="string">
 		<![CDATA[
-			delete from category where no=#{no }
+			select no, name, `desc`, date_format(reg_date,'%Y/%m/%d') as regDate, blog_id as id
+			from category where blog_id= #{id }
 		]]>
-	</insert>
+	</select>
+	
+	<select id="findFirstCategory" resultType="categoryvo" parameterType="string">
+		<![CDATA[
+			select * 
+			from category
+			where blog_id=#{id } 
+			limit 1
+		]]>
+	</select>
 	
 	
 	

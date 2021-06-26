@@ -41,10 +41,7 @@ public class BlogService {
 		return map;
 	}
 
-	public void createCategory(String id) {
-		blogRepository.createCategory(id);
-	}
-
+	
 	public void addCategory(String id,  String name, String desc) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("id", id);
@@ -53,21 +50,50 @@ public class BlogService {
 		blogRepository.addCategory(map);
 	}
 
-	public void deleteCategory(int no) {
-		blogRepository.deleteCategory(no);
+	public void deleteCategoryAndPost(int categoryNo) {
+		blogRepository.deleteCategory(categoryNo);
+		// Category 삭제시 Post 삭제 
+		blogRepository.deletePost(categoryNo);
 	}
 
 	public void addPost(PostVo vo) {
 		blogRepository.addPost(vo);
 	}
-
-	public Map<String, Object> findAllMain(String id) {
-		List<CategoryVo> list = blogRepository.findAllCategory(id);
-		
-		Map<String, Object> map = new HashMap<>();
-		
-		return map;
+	
+	public void createCategory(String id) {
+		blogRepository.createCategory(id);
 	}
 
 
+	public void createPost(int findRecentlyCategoryNo) {
+		blogRepository.createPost(findRecentlyCategoryNo);
+	}
+
+	
+	// main) post, category 처리 
+
+	public PostVo defaultPost(int categoryNo) {
+		return blogRepository.defaultPost(categoryNo);
+	}
+
+	
+	public List<CategoryVo> findCategoryList(String id) {
+		return blogRepository.findCategoryList(id);
+	}
+	
+
+	public List<PostVo> findPostListByCategory(int categoryNo) {
+		return blogRepository.findPostListByCategory(categoryNo);
+	}
+
+	public PostVo currentPost(int postNo) {
+		return blogRepository.currentPost(postNo);
+	}
+
+	public CategoryVo findFirstCategory(String id) {
+		return blogRepository.findFirstCategory(id);
+	}
+
+	
+	
 }
