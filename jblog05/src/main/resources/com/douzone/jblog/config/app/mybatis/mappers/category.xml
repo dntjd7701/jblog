@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="category">
+	<select id="findAllCategory" parameterType="string"
+		resultType="categoryvo">
+		<![CDATA[
+		select  c.no, c.name, c.desc, count(p.category_no) as count
+				from category c left join post p
+				on c.no = p.category_no 
+				where c.blog_id = #{id }
+				group by c.no
+		]]>
+	</select>
+
+	<select id="countOfCategory" resultType="int">
+		<![CDATA[
+			select count(*) from category
+		]]>
+	</select>
+
+	<insert id="deleteCategory" parameterType="int">
+		<![CDATA[
+			delete from category where no=#{no }
+		]]>
+	</insert>
+
+
+	<insert id="createCategory" parameterType="string">
+		<![CDATA[
+			insert into category 
+			values(null, "무제", "카테고리를 추가하세요.", now(), #{id })
+		]]>
+	</insert>
+
+	<insert id="addCategory" parameterType="map">
+		<![CDATA[
+			insert into category 
+			values(null, #{name }, #{desc }, now(), #{id })
+		]]>
+	</insert>
+
+
+	<!-- main -->
+
+
+	<select id="findCategoryList" resultType="categoryvo"
+		parameterType="string">
+		<![CDATA[
+			select no, name, `desc`, date_format(reg_date,'%Y/%m/%d') as regDate, blog_id as id
+			from category where blog_id= #{id }
+		]]>
+	</select>
+
+	<select id="findFirstCategory" resultType="categoryvo"
+		parameterType="string">
+		<![CDATA[
+			select * 
+			from category
+			where blog_id=#{id } 
+			limit 1
+		]]>
+	</select>
+
+
+
+</mapper>
