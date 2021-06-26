@@ -7,7 +7,7 @@
 		<artifactId>jblog</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>jblog03</artifactId>
+	<artifactId>jblog04</artifactId>
 	<packaging>war</packaging>
 
 
@@ -38,12 +38,12 @@
 			<version>${org.springframwork-version}</version>
 			
 			<!-- JCL 제외 -->
-			 <exclusions>
+			<!-- <exclusions>
 				 <exclusion>
 					 <groupId>commons-logging</groupId>
 					  <artifactId>commons-logging</artifactId>
 				 </exclusion>
-			</exclusions>
+			</exclusions> -->
 		</dependency>
 
 		<!-- Spring-Web-MVC -->
@@ -138,9 +138,8 @@
 		  </dependency>
 		
 		
-		
 		<!-- Logback --> 
-		<dependency>                                    
+		<!-- <dependency>                                    
 			<groupId>org.slf4j</groupId>                
 			<artifactId>jcl-over-slf4j</artifactId>     
 			<version>${jcloverslf4j.version}</version>  
@@ -149,9 +148,7 @@
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<version>${logback.version}</version>
-		</dependency> 
-		
-		
+		</dependency> -->
 		
 		
 		<!-- validation -->
@@ -172,7 +169,7 @@
 
 
 	<build>
-		<finalName>jblog03</finalName>
+		<finalName>jblog04</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -188,7 +185,7 @@
 				<artifactId>tomcat-maven-plugin</artifactId>
 				<configuration>
 					<url>http://127.0.0.1:9090/manager/text</url>
-					<path>/jblog03</path>
+					<path>/jblog04</path>
 					<username>admin</username>
 					<password>manager</password>
 				</configuration>

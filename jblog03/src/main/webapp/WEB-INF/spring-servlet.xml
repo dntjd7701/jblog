@@ -44,12 +44,11 @@
 
 	<!-- Controller 쪽에도 지정을 해야 할 상황이 생길 수 있어서, 미리 설정함  -->
 	<!-- Auto Proxy -->
-	<!-- <aop:aspectj-autoproxy/> --> 
+	<!--  <aop:aspectj-autoproxy/> --> 
 
 
 	
 	<!-- 위에 둘 제외 + assets 애들 하고 나머지 다~ 검사   -->
-	<!-- 
  	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>
@@ -58,10 +57,16 @@
 			<mvc:exclude-mapping path="/assets/**"/>
 			<bean class="com.douzone.jblog.security.AuthInterceptor"/>
 		</mvc:interceptor>
-	</mvc:interceptors>  -->
+	</mvc:interceptors>
 	
 	
-		 
+	<mvc:annotation-driven>
+		<mvc:argument-resolvers>
+			<bean class="com.douzone.jblog.security.AuthUserHandlerMethodArgumentResolver"/>
+		</mvc:argument-resolvers>	
+	</mvc:annotation-driven>
+	
+	
 	<!-- Validator, conversionService, messageConverter를 자동으로 등록 -->
 	 <!-- <mvc:annotation-driven>
 		Message Converter
@@ -83,9 +88,7 @@
 			</bean>
 		</mvc:message-converters>
 	
-		<mvc:argument-resolvers>
-			<bean class="com.douzone.mysite.security.AuthUserHandlerMethodArgumentResolver"/>
-		</mvc:argument-resolvers>	
+	
 		
 		
 	</mvc:annotation-driven> -->
