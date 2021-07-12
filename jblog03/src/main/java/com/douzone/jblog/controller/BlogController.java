@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.douzone.jblog.security.Auth;
 import com.douzone.jblog.service.BlogService;
 import com.douzone.jblog.service.FileUploadService;
 import com.douzone.jblog.vo.BlogVo;
@@ -34,8 +33,6 @@ public class BlogController {
 	
 	
 //	 Main 
-	
-	
 	@RequestMapping({"", "/{pathNo1}", "/{pathNo1}/{pathNo2}"})
 	public String main(
 		@PathVariable("id") String id,
@@ -102,12 +99,10 @@ public class BlogController {
 	
 	
 //	Admin
-	@Auth
 	@RequestMapping("/admin/basic")
 	public String adminBasic(@PathVariable("id") String id, Model model) {
 		return "blog/admin/basic";
 	}
-	@Auth
 	@RequestMapping("/admin/basic/upload")
 	public String updateTitleAndLogo(
 			@RequestParam("file1") MultipartFile file1,
@@ -121,54 +116,63 @@ public class BlogController {
 		return "redirect:/" + id;
 	}
 	
-//	Category
-	@Auth
-	@RequestMapping("/admin/category")
-	public String adminCategory(
-			@PathVariable("id") String id,
-			Model model) {
-		Map<String, Object> map = blogService.findAllCategory(id);
-		model.addAttribute("map", map);
-		return "blog/admin/category";
-	}
 	
-	@Auth
-	@RequestMapping("/admin/category/add")
-	public String addCategory(
-			@PathVariable("id") String id,
-			@RequestParam("name") String name,
-			@RequestParam("desc") String desc) {
-		blogService.addCategory(id, name, desc);
-		return "redirect:/" + id + "/admin/category";
-	}
-	@Auth
-	@RequestMapping("/admin/category/delete")
-	public String deleteCategory(
-			@PathVariable("id") String id,
-			@RequestParam("no") int no) {
-		
-		blogService.deleteCategoryAndPost(no);
-		return "redirect:/" + id + "/admin/category";
-	}
-	
-//	Write (Post)
-	@Auth
+	//Write (Post)
 	@RequestMapping("/admin/write")
 	public String adminWrite(
 			@PathVariable("id") String id,
 			Model model) {
-		Map<String, Object>  map = blogService.findAllCategory(id);
+		List<CategoryVo> list = blogService.findAllCategory(id);
+		int count = blogService.countOfCategory();
+		Map<String, Object>  map = new HashMap<>();
+		map.put("list", list);
+		map.put("count", count);
 		model.addAttribute("map", map);
 		
 		return "blog/admin/write";
 	}
-	@Auth
-	@RequestMapping("/admin/write/add")
-	public String addPost(
-			@PathVariable("id") String id,
-			PostVo vo) {
-		blogService.addPost(vo);
-		return "redirect:/" + id;
+//	@RequestMapping("/admin/write/add")
+//	public String addPost(
+//			@PathVariable("id") String id,
+//			PostVo vo) {
+//		blogService.addPost(vo);
+//		return "redirect:/" + id;
+//	}
+	
+	
+	
+	
+//	Category
+//	@RequestMapping("/admin/category")
+//	public String adminCategory(
+//			@PathVariable("id") String id,
+//			Model model) {
+//		Map<String, Object> map = blogService.findAllCategory(id);
+//		model.addAttribute("map", map);
+//		return "blog/admin/category";
+//	}
+//	
+//	@RequestMapping("/admin/category/add")
+//	public String addCategory(
+//			@PathVariable("id") String id,
+//			@RequestParam("name") String name,
+//			@RequestParam("desc") String desc) {
+//		blogService.addCategory(id, name, desc);
+//		return "redirect:/" + id + "/admin/category";
+//	}
+//	
+//	@RequestMapping("/admin/category/delete")
+//	public String deleteCategory(
+//			@PathVariable("id") String id,
+//			@RequestParam("no") int no) {
+//		
+//		blogService.deleteCategoryAndPost(no);
+//		return "redirect:/" + id + "/admin/category";
+//	}
+	
+	@RequestMapping("/admin/category")
+	public String category() {
+		return "blog/admin/category";
 	}
 
 }

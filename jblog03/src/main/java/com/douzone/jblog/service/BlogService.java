@@ -29,18 +29,26 @@ public class BlogService {
 		blogRepository.updateBasic(vo);
 	}
 
-	public Map<String, Object> findAllCategory(String id) {
+//	public Map<String, Object> findAllCategory(String id) {
+//		
+//		List<CategoryVo> list = blogRepository.findAllCategory(id);
+//		Map<String, Object> map = new HashMap<>();
+//		int countOfCategory = blogRepository.countOfCategory();
+//		
+//		map.put("list",	 list);
+//		map.put("countOfCategory", countOfCategory);
+//		
+//		return map;
+//	}
+	public List<CategoryVo> findAllCategory(String id) {
 		
 		List<CategoryVo> list = blogRepository.findAllCategory(id);
-		Map<String, Object> map = new HashMap<>();
-		int countOfCategory = blogRepository.countOfCategory();
-		
-		map.put("list",	 list);
-		map.put("countOfCategory", countOfCategory);
-		
-		return map;
+//		int countOfCategory = blogRepository.countOfCategory();
+		return list;
 	}
-
+	public int  countOfCategory() {
+		return  blogRepository.countOfCategory();
+	}
 	
 	public void addCategory(String id,  String name, String desc) {
 		Map<String, Object> map = new HashMap<>();
